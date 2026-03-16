@@ -251,11 +251,14 @@ export default function ScrollSection() {
 
       mm.add(
         {
+          isDesktop: "(min-width: 768px)",
           isMobile: "(max-width: 767px)",
           prefersReducedMotion: "(prefers-reduced-motion: reduce)",
         },
         (media) => {
-          const { isMobile, prefersReducedMotion } = media.conditions;
+          const { isDesktop, isMobile, prefersReducedMotion } = media.conditions;
+          // isDesktop is intentionally included so at least one condition matches on larger screens.
+          void isDesktop;
           const modeTuning = resolveMotionPreset({ isMobile, prefersReducedMotion });
 
           const profile = {
